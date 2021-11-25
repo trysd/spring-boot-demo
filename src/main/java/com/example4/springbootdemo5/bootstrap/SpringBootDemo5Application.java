@@ -1,13 +1,14 @@
-package com.example2.demo2;
+package com.example4.springbootdemo5.bootstrap;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Demo2Application {
+public class SpringBootDemo5Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Demo2Application.class, args);
+
+		SpringApplication.run(SpringBootDemo5Application.class, args);
 	}
 
 }
