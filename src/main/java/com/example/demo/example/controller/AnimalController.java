@@ -1,12 +1,12 @@
 package com.example.demo.example.controller;
 
-import com.example.demo.example.model.Animal;
+import com.example.demo.example.model.datadase.Animal;
+import com.example.demo.example.model.response.AnimalGetAsIDJson;
 import com.example.demo.example.repository.animal.AnimalRepositoryForRead;
 import com.example.demo.example.repository.animal.AnimalRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -40,9 +40,11 @@ public class AnimalController {
 
     // html
     model.addAttribute("animalList", animalList);
-    model.addAttribute("message", "Hello Animal");
+    model.addAttribute("message", "Hello Animal!");
     model.addAttribute("name", name);
 
     return "animal";
   }
+
+
 }
