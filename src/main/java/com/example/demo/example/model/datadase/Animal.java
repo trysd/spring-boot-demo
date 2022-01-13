@@ -1,25 +1,29 @@
 package com.example.demo.example.model.datadase;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="animal")
 public class Animal {
 
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  Integer id;
+  @Column(unique = true, nullable = false)
+  private Integer id;
 
-  String grp;
-  String kind;
-  Integer age;
-  String name;
+  private String grp;
+  private String kind;
+  private Integer age;
+  private String name;
 
   @Version
-  Integer version;
+  private Integer version;
 }
