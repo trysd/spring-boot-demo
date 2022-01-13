@@ -1,5 +1,6 @@
 package com.example.demo.example.repository.animal;
 
+import com.example.demo.example.model.datadase.Animal;
 import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.stereotype.Component;
 
@@ -17,10 +18,29 @@ public class AnimalRepositoryForUpdate {
   @PersistenceContext
   private EntityManager em;
 
+  public void Delete(Animal animal) {
+
+    try {
+      em.remove(animal);
+    } catch (Exception e) {
+      e.printStackTrace();
+      throw e;
+    }
+  }
+
   @QueryHints({@QueryHint(name = "javax.persistence.lock.timeout", value = "3000")})
-  public Integer Insert() {
+  public Integer Insert(Animal entity) {
+    System.out.println(entity);
+    try {
+      em.persist(entity);
+    } catch (Exception e) {
+      e.printStackTrace();
+      throw e;
+    }
 
     return null;
   }
+
+
 
 }

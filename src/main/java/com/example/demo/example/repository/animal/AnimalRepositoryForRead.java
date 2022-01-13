@@ -4,6 +4,7 @@ import com.example.demo.example.model.datadase.Animal;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.inject.Singleton;
 import javax.persistence.*;
@@ -16,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Singleton
-@Component
+@Repository
 public class AnimalRepositoryForRead {
 
   @PersistenceContext
