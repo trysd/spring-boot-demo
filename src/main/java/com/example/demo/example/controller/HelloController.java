@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.thymeleaf.util.StringUtils;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -13,6 +14,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
+
+import java.util.UUID;
+
+class AFace {
+  public String st;
+  void setSt(String str) {
+    this.st = str;
+  }
+}
 
 @Controller
 public class HelloController {
@@ -30,6 +40,8 @@ public class HelloController {
 //    }
 //  }
 
+  List<AFace> aFaceList = new ArrayList<>();
+
   @CrossOrigin
   @GetMapping("/hello")
   public String hello(@RequestParam(value = "name", defaultValue = "?") String name, Model model) {
@@ -40,10 +52,23 @@ public class HelloController {
     test001.countUp();
     model.addAttribute("str1", test001.test());
 
-//    this.complexity(); // for test
+    // this.memoryTest(); // メモリテスト
+
+    // this.complexity(); // for test of 複雑度測定検証
 
     return "hello";
   }
+
+  /**
+   * メモリテスト
+   */
+  private void memoryTest() {
+    AFace af = new AFace();
+    af.setSt( StringUtils.repeat(UUID.randomUUID().toString(),100 ) );
+    this.aFaceList.add(af);
+  }
+
+
 //
 //  /**
 //   * 複雑度測定検証
