@@ -96,6 +96,7 @@ public class AnimalController {
     model.addAttribute("message", "Hello Animal!!");
     model.addAttribute("name", name);
 
+    // テンプレート名
     return "animal";
   }
 

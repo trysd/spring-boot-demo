@@ -16,6 +16,8 @@ public class RestAnimalController {
       @RequestParam(value = "one-time-token", defaultValue = "?") String oneTimeToken,
       Model model
   ) {
+
+    // json返却例
     return new AnimalGetAsIDJson(
         0,
         "null",
