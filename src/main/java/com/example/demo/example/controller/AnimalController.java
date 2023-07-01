@@ -32,12 +32,15 @@ public class AnimalController {
 
   @GetMapping("/animal/insert")
   public String animalInsert(@RequestParam(value = "name", defaultValue = "?") String name, Model model) {
+
+    // http://localhost/animal?name=newAnimal
+
     animalRepositoryForUpdate.Insert(new Animal(
             null,
-            "sss",
-            "ssp",
+            "default-grp",
+            "default-kind",
             new Random().nextInt(100),
-            "kis",
+            name,
             0));
 
     return "redirect:/animal";

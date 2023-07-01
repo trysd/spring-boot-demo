@@ -1,0 +1,33 @@
+version: '3.7'
+
+# docker system prune -a -f && docker volume ls -qf dangling=true | xargs -r
+# docker-compose -f docker-pg.yml up --build
+
+services:
+
+  postgresql:
+    container_name: pg
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: devenv/postgresql
+    env_file:
+      - .env
+    ports:
+      - 5432:5432
+    networks:
+      - n01
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+    environment:
+      TZ: Asia/Tokyo
+      POSTGRES_INITDB_ARGS: '--encoding=UTF-8 --locale=C'
+    logging:
+      driver: json-file
+      options:
+        max-size: '5m'
+        max-file: '1'
+
+networks:
+  n01:
+    name: n01

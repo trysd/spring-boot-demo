@@ -16,6 +16,7 @@
     <td th:text="*{kind}"></td>
     <td th:text="*{age}"></td>
     <td th:text="*{name}"></td>
+    <td>[<a th:href="@{./animal/delete/{id}(id=*{id})}">DEL</a>]</td>
   </tr>
 </table>
 
