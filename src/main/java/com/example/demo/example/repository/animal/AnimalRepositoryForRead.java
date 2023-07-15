@@ -1,6 +1,8 @@
 package com.example.demo.example.repository.animal;
 
 import com.example.demo.example.model.datadase.Animal;
+
+import org.hibernate.SessionFactory;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.QueryHints;
 // import org.springframework.stereotype.Component;
@@ -34,6 +36,17 @@ public class AnimalRepositoryForRead {
   @QueryHints({@QueryHint(name = "javax.persistence.lock.timeout", value = "3000")})
   public List<Animal> findList() {
 
+    // -----
+    // java -Xmx50m -Xms50m -jar ./target/demo.example-0.0.1.jar
+    System.out.println("### Statistics ###");
+    SessionFactory sessionFactory = em.getEntityManagerFactory().unwrap(SessionFactory.class);
+    sessionFactory.getStatistics().setStatisticsEnabled(true);
+    long hitCount = sessionFactory.getStatistics().getQueryPlanCacheHitCount();
+    long missCount = sessionFactory.getStatistics().getQueryPlanCacheMissCount();
+    System.out.println("Query Plan Cache Hit Count: " + hitCount);
+    System.out.println("Query Plan Cache miss Count: " + missCount);
+    // -----
+
     CriteriaBuilder builder = em.getCriteriaBuilder();
     CriteriaQuery<Animal> query = builder.createQuery(Animal.class);
 
@@ -53,7 +66,6 @@ public class AnimalRepositoryForRead {
     query.orderBy(builder.asc(qFrom.get("id")));
 
     List<Animal> result = em.createQuery(query).getResultList();
-
 
     return result;
   }

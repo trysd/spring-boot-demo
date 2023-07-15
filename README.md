@@ -25,6 +25,11 @@ VALUES
 ,('mmm', 'monkey', 'uki', 10)
 ```
 
+# jar exec
+```
+java -Xmx50m -Xms50m -jar ./target/demo.example-0.0.1.jar
+```
+
 # debug command
 ```
 mvn clean package && java -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005 -jar ./target/demo.example-0.0.1.jar
@@ -36,8 +41,8 @@ Template updates are mild as compilation does not run.
 # docker
 
 ## app
-docker rm -f app && docker build -t app:latest .
-docker run --rm --net n01 --name app -d -p 80:80 app:latest
+docker build -t app:latest .
+docker rm -f app && docker run --rm --net n01 --name app -d -p 80:80 app:latest
 
 ## DB
 cd pg && docker-compose -f docker-pg.yml up --build

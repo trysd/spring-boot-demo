@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -44,10 +41,29 @@ public class AnimalController {
             "default-kind",
             new Random().nextInt(100),
             name,
-
             0));
 
     return "redirect:/animal";
+  }
+
+  @GetMapping("/animal/in-test")
+  public String animalInTest(Model model) {
+
+    Random rand = new Random();
+    int size = rand.nextInt(30000) + 1;
+    Integer[] ids = new Integer[size];
+    for (int i = 0; i < size; i++) {
+      ids[i] = rand.nextInt(100000) + 1;
+    }
+
+    List<Animal> animalList = animalRepository.findByIdIn(ids);
+
+    model.addAttribute("message", "in-test");
+    model.addAttribute("name", "ids:" + ids.length + ", animalList.size(): " + animalList.size());
+
+    System.out.println(ids.length);
+
+    return "in-test";
   }
 
   @GetMapping("/animal/delete")
@@ -103,6 +119,5 @@ public class AnimalController {
     // テンプレート名
     return "animal";
   }
-
 
 }
