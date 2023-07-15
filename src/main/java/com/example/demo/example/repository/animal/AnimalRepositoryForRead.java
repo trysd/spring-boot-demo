@@ -3,7 +3,7 @@ package com.example.demo.example.repository.animal;
 import com.example.demo.example.model.datadase.Animal;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.QueryHints;
-import org.springframework.stereotype.Component;
+// import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import javax.inject.Singleton;
