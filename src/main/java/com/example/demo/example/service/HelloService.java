@@ -12,6 +12,25 @@ public class HelloService {
   }
 
   public String test() {
-    return "count test001: " + this.count;
+    return "count test001:: " + this.count;
+  }
+}
+
+// 多分 outer, Inner のテスト
+class Outer {
+  private int outerVal;
+
+  public class Inner {
+    public int innerVal;
+    private void method() {
+      // OK
+      this.innerVal = Outer.this.outerVal;
+    }
+  }
+
+  private void method() {
+    // NG
+    // this.outerVal = innerVal;
+    Outer.Inner inner = (new Outer()).new Inner();
   }
 }
